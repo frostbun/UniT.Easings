@@ -1,0 +1,15 @@
+{
+  "name": "UniT.Easings",
+  "rootNamespace": "UniT.Easings",
+  "references": [
+    "UniTask",
+    "Unity.TextMeshPro"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.unity.textmeshpro",
+      "expression": "",
+      "define": "UNIT_EASINGS_TMP"
+    }
+  ]
+}
