@@ -151,33 +151,39 @@ namespace UniT.Easings
 
         public static UniTask RotateX(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var rotation = transform.rotation;
+            var euler = transform.rotation.eulerAngles;
             var wrapper = new Action<float>(value =>
             {
-                rotation.x         = value;
-                transform.rotation = rotation;
+                euler.x = value;
+                var rotation = transform.rotation;
+                rotation.eulerAngles = euler;
+                transform.rotation   = rotation;
             });
             return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
         }
 
         public static UniTask RotateY(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var rotation = transform.rotation;
+            var euler = transform.rotation.eulerAngles;
             var wrapper = new Action<float>(value =>
             {
-                rotation.y         = value;
-                transform.rotation = rotation;
+                euler.y = value;
+                var rotation = transform.rotation;
+                rotation.eulerAngles = euler;
+                transform.rotation   = rotation;
             });
             return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
         }
 
         public static UniTask RotateZ(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var rotation = transform.rotation;
+            var euler = transform.rotation.eulerAngles;
             var wrapper = new Action<float>(value =>
             {
-                rotation.z         = value;
-                transform.rotation = rotation;
+                euler.z = value;
+                var rotation = transform.rotation;
+                rotation.eulerAngles = euler;
+                transform.rotation   = rotation;
             });
             return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
         }
@@ -225,10 +231,12 @@ namespace UniT.Easings
 
         public static UniTask LocalRotateX(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var rotation = transform.localRotation;
+            var euler = transform.localRotation.eulerAngles;
             var wrapper = new Action<float>(value =>
             {
-                rotation.x              = value;
+                euler.x = value;
+                var rotation = transform.localRotation;
+                rotation.eulerAngles    = euler;
                 transform.localRotation = rotation;
             });
             return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
@@ -236,10 +244,12 @@ namespace UniT.Easings
 
         public static UniTask LocalRotateY(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var rotation = transform.localRotation;
+            var euler = transform.localRotation.eulerAngles;
             var wrapper = new Action<float>(value =>
             {
-                rotation.y              = value;
+                euler.y = value;
+                var rotation = transform.localRotation;
+                rotation.eulerAngles    = euler;
                 transform.localRotation = rotation;
             });
             return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
@@ -247,10 +257,12 @@ namespace UniT.Easings
 
         public static UniTask LocalRotateZ(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var rotation = transform.localRotation;
+            var euler = transform.localRotation.eulerAngles;
             var wrapper = new Action<float>(value =>
             {
-                rotation.z              = value;
+                euler.z = value;
+                var rotation = transform.localRotation;
+                rotation.eulerAngles    = euler;
                 transform.localRotation = rotation;
             });
             return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
