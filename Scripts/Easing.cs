@@ -5,11 +5,13 @@ namespace UniT.Easings
     using Cysharp.Threading.Tasks;
     using UnityEngine;
 
+    public delegate float EasingFunction(float x);
+
     public static class Easing
     {
         #region Basic
 
-        public static async UniTask Apply(Action<float> action, Func<float, float> easingFunction, float duration, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static async UniTask Apply(Action<float> action, EasingFunction easingFunction, float duration, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var start = Time.time;
             while (Time.time - start < duration)
@@ -93,7 +95,7 @@ namespace UniT.Easings
 
         #region Range
 
-        public static UniTask Apply(Action<float> action, Func<float, float> easingFunction, float begin, float end, float duration, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask Apply(Action<float> action, EasingFunction easingFunction, float begin, float end, float duration, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var wrapper = new Action<float>(value => action(begin + (end - begin) * value));
             return Apply(wrapper, easingFunction, duration, timing, cancellationToken);
@@ -171,7 +173,7 @@ namespace UniT.Easings
 
         #region Integer
 
-        public static UniTask Apply(Action<int> action, Func<float, float> easingFunction, int begin, int end, float duration, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask Apply(Action<int> action, EasingFunction easingFunction, int begin, int end, float duration, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var last = 0;
             var wrapper = new Action<float>(value =>
@@ -396,7 +398,7 @@ namespace UniT.Easings
                 ? (1 - OutBounce(1 - 2 * x)) / 2
                 : (1 + OutBounce(2 * x - 1)) / 2;
 
-            public static Func<float, float> FromType(Type type) => type switch
+            public static EasingFunction FromType(Type type) => type switch
             {
                 Type.Linear       => Linear,
                 Type.InSince      => InSince,

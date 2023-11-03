@@ -11,42 +11,35 @@ namespace UniT.Easings
 
         public static UniTask Move(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var diff    = end - begin;
-            var wrapper = new Action<float>(value => transform.position = begin + diff * value);
-            return Easing.Apply(wrapper, type, duration, timing, cancellationToken);
+            var wrapper = new Action<Vector3>(value => transform.position = value);
+            return Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
         }
 
         public static UniTask MoveX(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var position = transform.position;
-            var wrapper = new Action<float>(value =>
-            {
-                position.x         = value;
-                transform.position = position;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginPosition = transform.position;
+            var endPosition   = beginPosition;
+            beginPosition.x = begin;
+            endPosition.x   = end;
+            return transform.Move(beginPosition, endPosition, duration, type, timing, cancellationToken);
         }
 
         public static UniTask MoveY(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var position = transform.position;
-            var wrapper = new Action<float>(value =>
-            {
-                position.y         = value;
-                transform.position = position;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginPosition = transform.position;
+            var endPosition   = beginPosition;
+            beginPosition.y = begin;
+            endPosition.y   = end;
+            return transform.Move(beginPosition, endPosition, duration, type, timing, cancellationToken);
         }
 
         public static UniTask MoveZ(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var position = transform.position;
-            var wrapper = new Action<float>(value =>
-            {
-                position.z         = value;
-                transform.position = position;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginPosition = transform.position;
+            var endPosition   = beginPosition;
+            beginPosition.z = begin;
+            endPosition.z   = end;
+            return transform.Move(beginPosition, endPosition, duration, type, timing, cancellationToken);
         }
 
         public static UniTask Move(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
@@ -75,42 +68,35 @@ namespace UniT.Easings
 
         public static UniTask LocalMove(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var diff    = end - begin;
-            var wrapper = new Action<float>(value => transform.localPosition = begin + diff * value);
-            return Easing.Apply(wrapper, type, duration, timing, cancellationToken);
+            var wrapper = new Action<Vector3>(value => transform.localPosition = value);
+            return Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
         }
 
         public static UniTask LocalMoveX(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var position = transform.localPosition;
-            var wrapper = new Action<float>(value =>
-            {
-                position.x              = value;
-                transform.localPosition = position;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginPosition = transform.localPosition;
+            var endPosition   = beginPosition;
+            beginPosition.x = begin;
+            endPosition.x   = end;
+            return transform.LocalMove(beginPosition, endPosition, duration, type, timing, cancellationToken);
         }
 
         public static UniTask LocalMoveY(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var position = transform.localPosition;
-            var wrapper = new Action<float>(value =>
-            {
-                position.y              = value;
-                transform.localPosition = position;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginPosition = transform.localPosition;
+            var endPosition   = beginPosition;
+            beginPosition.y = begin;
+            endPosition.y   = end;
+            return transform.LocalMove(beginPosition, endPosition, duration, type, timing, cancellationToken);
         }
 
         public static UniTask LocalMoveZ(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var position = transform.localPosition;
-            var wrapper = new Action<float>(value =>
-            {
-                position.z              = value;
-                transform.localPosition = position;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginPosition = transform.localPosition;
+            var endPosition   = beginPosition;
+            beginPosition.z = begin;
+            endPosition.z   = end;
+            return transform.LocalMove(beginPosition, endPosition, duration, type, timing, cancellationToken);
         }
 
         public static UniTask LocalMove(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
@@ -137,65 +123,52 @@ namespace UniT.Easings
 
         #region Rotate
 
-        public static UniTask Rotate(this Transform transform, Quaternion begin, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
-        {
-            var diff    = end * Quaternion.Inverse(begin);
-            var wrapper = new Action<float>(value => transform.rotation = begin * Quaternion.SlerpUnclamped(Quaternion.identity, diff, value));
-            return Easing.Apply(wrapper, type, duration, timing, cancellationToken);
-        }
-
         public static UniTask Rotate(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.Rotate(Quaternion.Euler(begin), Quaternion.Euler(end), duration, type, timing, cancellationToken);
+            var wrapper = new Action<Vector3>(value => transform.rotation = Quaternion.Euler(value));
+            return Apply(wrapper, type, Wrap(begin, end), end, duration, timing, cancellationToken);
+        }
+
+        public static UniTask Rotate(this Transform transform, Quaternion begin, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return transform.Rotate(begin.eulerAngles, end.eulerAngles, duration, type, timing, cancellationToken);
         }
 
         public static UniTask RotateX(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var euler = transform.rotation.eulerAngles;
-            var wrapper = new Action<float>(value =>
-            {
-                euler.x = value;
-                var rotation = transform.rotation;
-                rotation.eulerAngles = euler;
-                transform.rotation   = rotation;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginRotation = transform.rotation.eulerAngles;
+            var endRotation   = beginRotation;
+            beginRotation.x = begin;
+            endRotation.x   = end;
+            return transform.Rotate(beginRotation, endRotation, duration, type, timing, cancellationToken);
         }
 
         public static UniTask RotateY(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var euler = transform.rotation.eulerAngles;
-            var wrapper = new Action<float>(value =>
-            {
-                euler.y = value;
-                var rotation = transform.rotation;
-                rotation.eulerAngles = euler;
-                transform.rotation   = rotation;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginRotation = transform.rotation.eulerAngles;
+            var endRotation   = beginRotation;
+            beginRotation.y = begin;
+            endRotation.y   = end;
+            return transform.Rotate(beginRotation, endRotation, duration, type, timing, cancellationToken);
         }
 
         public static UniTask RotateZ(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var euler = transform.rotation.eulerAngles;
-            var wrapper = new Action<float>(value =>
-            {
-                euler.z = value;
-                var rotation = transform.rotation;
-                rotation.eulerAngles = euler;
-                transform.rotation   = rotation;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
-        }
-
-        public static UniTask Rotate(this Transform transform, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
-        {
-            return transform.Rotate(transform.rotation, end, duration, type, timing, cancellationToken);
+            var beginRotation = transform.rotation.eulerAngles;
+            var endRotation   = beginRotation;
+            beginRotation.z = begin;
+            endRotation.z   = end;
+            return transform.Rotate(beginRotation, endRotation, duration, type, timing, cancellationToken);
         }
 
         public static UniTask Rotate(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             return transform.Rotate(transform.rotation.eulerAngles, end, duration, type, timing, cancellationToken);
+        }
+
+        public static UniTask Rotate(this Transform transform, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return transform.Rotate(transform.rotation, end, duration, type, timing, cancellationToken);
         }
 
         public static UniTask RotateX(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
@@ -217,55 +190,42 @@ namespace UniT.Easings
 
         #region LocalRotate
 
-        public static UniTask LocalRotate(this Transform transform, Quaternion begin, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
-        {
-            var diff    = end * Quaternion.Inverse(begin);
-            var wrapper = new Action<float>(value => transform.localRotation = begin * Quaternion.SlerpUnclamped(Quaternion.identity, diff, value));
-            return Easing.Apply(wrapper, type, duration, timing, cancellationToken);
-        }
-
         public static UniTask LocalRotate(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalRotate(Quaternion.Euler(begin), Quaternion.Euler(end), duration, type, timing, cancellationToken);
+            var wrapper = new Action<Vector3>(value => transform.localRotation = Quaternion.Euler(value));
+            return Apply(wrapper, type, Wrap(begin, end), end, duration, timing, cancellationToken);
+        }
+
+        public static UniTask LocalRotate(this Transform transform, Quaternion begin, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return transform.LocalRotate(begin.eulerAngles, end.eulerAngles, duration, type, timing, cancellationToken);
         }
 
         public static UniTask LocalRotateX(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var euler = transform.localRotation.eulerAngles;
-            var wrapper = new Action<float>(value =>
-            {
-                euler.x = value;
-                var rotation = transform.localRotation;
-                rotation.eulerAngles    = euler;
-                transform.localRotation = rotation;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginRotation = transform.localRotation.eulerAngles;
+            var endRotation   = beginRotation;
+            beginRotation.x = begin;
+            endRotation.x   = end;
+            return transform.LocalRotate(beginRotation, endRotation, duration, type, timing, cancellationToken);
         }
 
         public static UniTask LocalRotateY(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var euler = transform.localRotation.eulerAngles;
-            var wrapper = new Action<float>(value =>
-            {
-                euler.y = value;
-                var rotation = transform.localRotation;
-                rotation.eulerAngles    = euler;
-                transform.localRotation = rotation;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginRotation = transform.localRotation.eulerAngles;
+            var endRotation   = beginRotation;
+            beginRotation.y = begin;
+            endRotation.y   = end;
+            return transform.LocalRotate(beginRotation, endRotation, duration, type, timing, cancellationToken);
         }
 
         public static UniTask LocalRotateZ(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var euler = transform.localRotation.eulerAngles;
-            var wrapper = new Action<float>(value =>
-            {
-                euler.z = value;
-                var rotation = transform.localRotation;
-                rotation.eulerAngles    = euler;
-                transform.localRotation = rotation;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginRotation = transform.localRotation.eulerAngles;
+            var endRotation   = beginRotation;
+            beginRotation.z = begin;
+            endRotation.z   = end;
+            return transform.LocalRotate(beginRotation, endRotation, duration, type, timing, cancellationToken);
         }
 
         public static UniTask LocalRotate(this Transform transform, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
@@ -299,42 +259,35 @@ namespace UniT.Easings
 
         public static UniTask Scale(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var diff    = end - begin;
-            var wrapper = new Action<float>(value => transform.localScale = begin + diff * value);
-            return Easing.Apply(wrapper, type, duration, timing, cancellationToken);
+            var wrapper = new Action<Vector3>(value => transform.localScale = value);
+            return Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
         }
 
         public static UniTask ScaleX(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var scale = transform.localScale;
-            var wrapper = new Action<float>(value =>
-            {
-                scale.x              = value;
-                transform.localScale = scale;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginScale = transform.localScale;
+            var endScale   = beginScale;
+            beginScale.x = begin;
+            endScale.x   = end;
+            return transform.Scale(beginScale, endScale, duration, type, timing, cancellationToken);
         }
 
         public static UniTask ScaleY(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var scale = transform.localScale;
-            var wrapper = new Action<float>(value =>
-            {
-                scale.y              = value;
-                transform.localScale = scale;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginScale = transform.localScale;
+            var endScale   = beginScale;
+            beginScale.y = begin;
+            endScale.y   = end;
+            return transform.Scale(beginScale, endScale, duration, type, timing, cancellationToken);
         }
 
         public static UniTask ScaleZ(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var scale = transform.localScale;
-            var wrapper = new Action<float>(value =>
-            {
-                scale.z              = value;
-                transform.localScale = scale;
-            });
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var beginScale = transform.localScale;
+            var endScale   = beginScale;
+            beginScale.z = begin;
+            endScale.z   = end;
+            return transform.Scale(beginScale, endScale, duration, type, timing, cancellationToken);
         }
 
         public static UniTask Scale(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
@@ -358,5 +311,22 @@ namespace UniT.Easings
         }
 
         #endregion
+
+        private static UniTask Apply(Action<Vector3> action, Easing.Type type, Vector3 begin, Vector3 end, float duration, PlayerLoopTiming timing, CancellationToken cancellationToken)
+        {
+            var diff    = end - begin;
+            var wrapper = new Action<float>(value => action(begin + diff * value));
+            return Easing.Apply(wrapper, type, duration, timing, cancellationToken);
+        }
+
+        private static Vector3 Wrap(Vector3 begin, Vector3 end)
+        {
+            begin.x = Wrap(begin.x, end.x);
+            begin.y = Wrap(begin.y, end.y);
+            begin.z = Wrap(begin.z, end.z);
+            return begin;
+
+            static float Wrap(float begin, float end) => begin - 360 * Mathf.Round((begin - end) / 360);
+        }
     }
 }
