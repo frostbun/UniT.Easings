@@ -173,17 +173,17 @@ namespace UniT.Easings
 
         public static UniTask RotateX(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.RotateX(transform.rotation.x, end, duration, type, timing, cancellationToken);
+            return transform.RotateX(transform.rotation.eulerAngles.x, end, duration, type, timing, cancellationToken);
         }
 
         public static UniTask RotateY(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.RotateY(transform.rotation.y, end, duration, type, timing, cancellationToken);
+            return transform.RotateY(transform.rotation.eulerAngles.y, end, duration, type, timing, cancellationToken);
         }
 
         public static UniTask RotateZ(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.RotateZ(transform.rotation.z, end, duration, type, timing, cancellationToken);
+            return transform.RotateZ(transform.rotation.eulerAngles.z, end, duration, type, timing, cancellationToken);
         }
 
         #endregion
@@ -240,17 +240,17 @@ namespace UniT.Easings
 
         public static UniTask LocalRotateX(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalRotateX(transform.localRotation.x, end, duration, type, timing, cancellationToken);
+            return transform.LocalRotateX(transform.localRotation.eulerAngles.x, end, duration, type, timing, cancellationToken);
         }
 
         public static UniTask LocalRotateY(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalRotateY(transform.localRotation.y, end, duration, type, timing, cancellationToken);
+            return transform.LocalRotateY(transform.localRotation.eulerAngles.y, end, duration, type, timing, cancellationToken);
         }
 
         public static UniTask LocalRotateZ(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalRotateZ(transform.localRotation.z, end, duration, type, timing, cancellationToken);
+            return transform.LocalRotateZ(transform.localRotation.eulerAngles.z, end, duration, type, timing, cancellationToken);
         }
 
         #endregion
