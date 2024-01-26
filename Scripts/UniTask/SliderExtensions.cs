@@ -1,3 +1,4 @@
+#if UNIT_EASINGS_UNITASK
 namespace UniT.Easings
 {
     using System;
@@ -19,3 +20,4 @@ namespace UniT.Easings
         }
     }
 }
+#endif

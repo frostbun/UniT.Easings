@@ -1,4 +1,4 @@
-#if UNIT_EASINGS_TMP
+#if UNIT_EASINGS_UNITASK && UNIT_EASINGS_TMP
 namespace UniT.Easings
 {
     using System;

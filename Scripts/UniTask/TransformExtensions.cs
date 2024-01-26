@@ -1,3 +1,4 @@
+#if UNIT_EASINGS_UNITASK
 namespace UniT.Easings
 {
     using System;
@@ -257,57 +258,57 @@ namespace UniT.Easings
 
         #region Scale
 
-        public static UniTask Scale(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScale(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var wrapper = new Action<Vector3>(value => transform.localScale = value);
             return Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
         }
 
-        public static UniTask ScaleX(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleX(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var beginScale = transform.localScale;
             var endScale   = beginScale;
             beginScale.x = begin;
             endScale.x   = end;
-            return transform.Scale(beginScale, endScale, duration, type, timing, cancellationToken);
+            return transform.LocalScale(beginScale, endScale, duration, type, timing, cancellationToken);
         }
 
-        public static UniTask ScaleY(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleY(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var beginScale = transform.localScale;
             var endScale   = beginScale;
             beginScale.y = begin;
             endScale.y   = end;
-            return transform.Scale(beginScale, endScale, duration, type, timing, cancellationToken);
+            return transform.LocalScale(beginScale, endScale, duration, type, timing, cancellationToken);
         }
 
-        public static UniTask ScaleZ(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleScaleZ(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var beginScale = transform.localScale;
             var endScale   = beginScale;
             beginScale.z = begin;
             endScale.z   = end;
-            return transform.Scale(beginScale, endScale, duration, type, timing, cancellationToken);
+            return transform.LocalScale(beginScale, endScale, duration, type, timing, cancellationToken);
         }
 
-        public static UniTask Scale(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScale(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.Scale(transform.localScale, end, duration, type, timing, cancellationToken);
+            return transform.LocalScale(transform.localScale, end, duration, type, timing, cancellationToken);
         }
 
-        public static UniTask ScaleX(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleX(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.ScaleX(transform.localScale.x, end, duration, type, timing, cancellationToken);
+            return transform.LocalScaleX(transform.localScale.x, end, duration, type, timing, cancellationToken);
         }
 
-        public static UniTask ScaleY(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleY(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.ScaleY(transform.localScale.y, end, duration, type, timing, cancellationToken);
+            return transform.LocalScaleY(transform.localScale.y, end, duration, type, timing, cancellationToken);
         }
 
-        public static UniTask ScaleZ(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleScaleZ(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.ScaleZ(transform.localScale.z, end, duration, type, timing, cancellationToken);
+            return transform.LocalScaleScaleZ(transform.localScale.z, end, duration, type, timing, cancellationToken);
         }
 
         #endregion
@@ -330,3 +331,4 @@ namespace UniT.Easings
         }
     }
 }
+#endif

@@ -7,6 +7,11 @@
   ],
   "versionDefines": [
     {
+      "name": "com.cysharp.unitask",
+      "expression": "",
+      "define": "UNIT_EASINGS_UNITASK"
+    },
+    {
       "name": "com.unity.textmeshpro",
       "expression": "",
       "define": "UNIT_EASINGS_TMP"
