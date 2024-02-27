@@ -148,7 +148,7 @@ namespace UniT.Easings
 
             public static float InBack(float x) => Mathf.Pow(x, 2) * (C3 * x - C1);
 
-            public static float OutBack(float x) => 1 + Mathf.Pow(x - 1, 2) * (C3 * (x - 1) - C1);
+            public static float OutBack(float x) => 1 + Mathf.Pow(x - 1, 2) * (C3 * (x - 1) + C1);
 
             public static float InOutBack(float x) => x < .5f
                 ? Mathf.Pow(2 * x, 2) * ((C2 + 1) * 2 * x - C2) / 2
