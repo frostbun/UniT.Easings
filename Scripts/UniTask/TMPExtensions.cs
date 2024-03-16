@@ -8,16 +8,16 @@ namespace UniT.Easings
 
     public static class TMPExtensions
     {
-        public static UniTask Count(this TMP_Text tmp, float begin, float end, float duration, string format = "N2", Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask Count(this TMP_Text tmp, float begin, float end, float duration, Func<float, string> formatter, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<float>(value => tmp.text = value.ToString(format));
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var wrapper = new Action<float>(value => tmp.text = formatter(value));
+            return Easing.Apply(wrapper, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask Count(this TMP_Text tmp, int begin, int end, float duration, string format = "N0", Easing.Type type = Easing.Type.Linear, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask Count(this TMP_Text tmp, int begin, int end, float duration, Func<int, string> formatter, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<int>(value => tmp.text = value.ToString(format));
-            return Easing.Apply(wrapper, type, begin, end, duration, timing, cancellationToken);
+            var wrapper = new Action<int>(value => tmp.text = formatter(value));
+            return Easing.Apply(wrapper, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
     }
 }

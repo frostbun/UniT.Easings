@@ -7,16 +7,16 @@ namespace UniT.Easings
 
     public static class TMPExtensions
     {
-        public static IEnumerator Count(this TMP_Text tmp, float begin, float end, float duration, string format = "N2", Easing.Type type = Easing.Type.Linear, Action callback = null)
+        public static IEnumerator Count(this TMP_Text tmp, float begin, float end, float duration, Func<float, string> formatter, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, Action callback = null)
         {
-            var wrapper = new Action<float>(value => tmp.text = value.ToString(format));
-            return Easing.Apply(wrapper, type, begin, end, duration, callback);
+            var wrapper = new Action<float>(value => tmp.text = formatter(value));
+            return Easing.Apply(wrapper, type, begin, end, duration, ignoreTimeScale, callback);
         }
 
-        public static IEnumerator Count(this TMP_Text tmp, int begin, int end, float duration, string format = "N0", Easing.Type type = Easing.Type.Linear, Action callback = null)
+        public static IEnumerator Count(this TMP_Text tmp, int begin, int end, float duration, Func<int, string> formatter, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, Action callback = null)
         {
-            var wrapper = new Action<int>(value => tmp.text = value.ToString(format));
-            return Easing.Apply(wrapper, type, begin, end, duration, callback);
+            var wrapper = new Action<int>(value => tmp.text = formatter(value));
+            return Easing.Apply(wrapper, type, begin, end, duration, ignoreTimeScale, callback);
         }
     }
 }
