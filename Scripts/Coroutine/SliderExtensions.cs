@@ -7,15 +7,15 @@ namespace UniT.Easings
 
     public static class SliderExtensions
     {
-        public static IEnumerator Slide(this Slider slider, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, Action callback = null)
+        public static IEnumerator SlideAsync(this Slider slider, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, Action callback = null)
         {
             var wrapper = new Action<float>(value => slider.value = value);
             return Easing.Apply(wrapper, type, begin, end, duration, ignoreTimeScale, callback);
         }
 
-        public static IEnumerator Slide(this Slider slider, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, Action callback = null)
+        public static IEnumerator SlideAsync(this Slider slider, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, Action callback = null)
         {
-            return slider.Slide(slider.value, end, duration, type, ignoreTimeScale, callback);
+            return slider.SlideAsync(slider.value, end, duration, type, ignoreTimeScale, callback);
         }
     }
 }
