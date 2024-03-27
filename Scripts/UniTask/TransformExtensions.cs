@@ -10,275 +10,275 @@ namespace UniT.Easings
     {
         #region Move
 
-        public static UniTask MoveAsync(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask MoveAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<Vector3>(value => transform.position = value);
+            var wrapper = new Action<Vector3>(value => target.position = value);
             return Apply(wrapper, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask MoveXAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask MoveXAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.position);
-            var setter = new Action<Vector3>(value => transform.position = value);
+            var getter = new Func<Vector3>(() => target.position);
+            var setter = new Action<Vector3>(value => target.position = value);
             return ApplyX(getter, setter, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask MoveYAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask MoveYAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.position);
-            var setter = new Action<Vector3>(value => transform.position = value);
+            var getter = new Func<Vector3>(() => target.position);
+            var setter = new Action<Vector3>(value => target.position = value);
             return ApplyY(getter, setter, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask MoveZAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask MoveZAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.position);
-            var setter = new Action<Vector3>(value => transform.position = value);
+            var getter = new Func<Vector3>(() => target.position);
+            var setter = new Action<Vector3>(value => target.position = value);
             return ApplyZ(getter, setter, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask MoveAsync(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask MoveAsync(this Transform target, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.MoveAsync(transform.position, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.MoveAsync(target.position, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask MoveXAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask MoveXAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.MoveXAsync(transform.position.x, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.MoveXAsync(target.position.x, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask MoveYAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask MoveYAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.MoveYAsync(transform.position.y, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.MoveYAsync(target.position.y, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask MoveZAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask MoveZAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.MoveZAsync(transform.position.z, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.MoveZAsync(target.position.z, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
         #endregion
 
         #region LocalMove
 
-        public static UniTask LocalMoveAsync(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalMoveAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<Vector3>(value => transform.localPosition = value);
+            var wrapper = new Action<Vector3>(value => target.localPosition = value);
             return Apply(wrapper, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalMoveXAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalMoveXAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.localPosition);
-            var setter = new Action<Vector3>(value => transform.localPosition = value);
+            var getter = new Func<Vector3>(() => target.localPosition);
+            var setter = new Action<Vector3>(value => target.localPosition = value);
             return ApplyX(getter, setter, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalMoveYAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalMoveYAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.localPosition);
-            var setter = new Action<Vector3>(value => transform.localPosition = value);
+            var getter = new Func<Vector3>(() => target.localPosition);
+            var setter = new Action<Vector3>(value => target.localPosition = value);
             return ApplyY(getter, setter, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalMoveZAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalMoveZAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.localPosition);
-            var setter = new Action<Vector3>(value => transform.localPosition = value);
+            var getter = new Func<Vector3>(() => target.localPosition);
+            var setter = new Action<Vector3>(value => target.localPosition = value);
             return ApplyZ(getter, setter, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalMoveAsync(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalMoveAsync(this Transform target, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalMoveAsync(transform.localPosition, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalMoveAsync(target.localPosition, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalMoveXAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalMoveXAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalMoveXAsync(transform.localPosition.x, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalMoveXAsync(target.localPosition.x, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalMoveYAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalMoveYAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalMoveYAsync(transform.localPosition.y, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalMoveYAsync(target.localPosition.y, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalMoveZAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalMoveZAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalMoveZAsync(transform.localPosition.z, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalMoveZAsync(target.localPosition.z, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
         #endregion
 
         #region Rotate
 
-        public static UniTask RotateAsync(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask RotateAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<Vector3>(value => transform.rotation = Quaternion.Euler(value));
+            var wrapper = new Action<Vector3>(value => target.rotation = Quaternion.Euler(value));
             return Apply(wrapper, type, Wrap(begin, end), end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask RotateXAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask RotateXAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.rotation.eulerAngles);
-            var setter = new Action<Vector3>(value => transform.rotation = Quaternion.Euler(value));
+            var getter = new Func<Vector3>(() => target.rotation.eulerAngles);
+            var setter = new Action<Vector3>(value => target.rotation = Quaternion.Euler(value));
             return ApplyX(getter, setter, type, Wrap(begin, end), end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask RotateYAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask RotateYAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.rotation.eulerAngles);
-            var setter = new Action<Vector3>(value => transform.rotation = Quaternion.Euler(value));
+            var getter = new Func<Vector3>(() => target.rotation.eulerAngles);
+            var setter = new Action<Vector3>(value => target.rotation = Quaternion.Euler(value));
             return ApplyY(getter, setter, type, Wrap(begin, end), end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask RotateZAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask RotateZAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.rotation.eulerAngles);
-            var setter = new Action<Vector3>(value => transform.rotation = Quaternion.Euler(value));
+            var getter = new Func<Vector3>(() => target.rotation.eulerAngles);
+            var setter = new Action<Vector3>(value => target.rotation = Quaternion.Euler(value));
             return ApplyZ(getter, setter, type, Wrap(begin, end), end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask RotateAsync(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask RotateAsync(this Transform target, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.RotateAsync(transform.rotation.eulerAngles, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.RotateAsync(target.rotation.eulerAngles, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask RotateXAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask RotateXAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.RotateXAsync(transform.rotation.eulerAngles.x, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.RotateXAsync(target.rotation.eulerAngles.x, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask RotateYAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask RotateYAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.RotateYAsync(transform.rotation.eulerAngles.y, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.RotateYAsync(target.rotation.eulerAngles.y, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask RotateZAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask RotateZAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.RotateZAsync(transform.rotation.eulerAngles.z, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.RotateZAsync(target.rotation.eulerAngles.z, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask RotateAsync(this Transform transform, Quaternion begin, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask RotateAsync(this Transform target, Quaternion begin, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.RotateAsync(begin.eulerAngles, end.eulerAngles, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.RotateAsync(begin.eulerAngles, end.eulerAngles, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask RotateAsync(this Transform transform, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask RotateAsync(this Transform target, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.RotateAsync(transform.rotation, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.RotateAsync(target.rotation, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
         #endregion
 
         #region LocalRotate
 
-        public static UniTask LocalRotateAsync(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalRotateAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<Vector3>(value => transform.localRotation = Quaternion.Euler(value));
+            var wrapper = new Action<Vector3>(value => target.localRotation = Quaternion.Euler(value));
             return Apply(wrapper, type, Wrap(begin, end), end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalRotateXAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalRotateXAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.localRotation.eulerAngles);
-            var setter = new Action<Vector3>(value => transform.localRotation = Quaternion.Euler(value));
+            var getter = new Func<Vector3>(() => target.localRotation.eulerAngles);
+            var setter = new Action<Vector3>(value => target.localRotation = Quaternion.Euler(value));
             return ApplyX(getter, setter, type, Wrap(begin, end), end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalRotateYAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalRotateYAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.localRotation.eulerAngles);
-            var setter = new Action<Vector3>(value => transform.localRotation = Quaternion.Euler(value));
+            var getter = new Func<Vector3>(() => target.localRotation.eulerAngles);
+            var setter = new Action<Vector3>(value => target.localRotation = Quaternion.Euler(value));
             return ApplyY(getter, setter, type, Wrap(begin, end), end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalRotateZAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalRotateZAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.localRotation.eulerAngles);
-            var setter = new Action<Vector3>(value => transform.localRotation = Quaternion.Euler(value));
+            var getter = new Func<Vector3>(() => target.localRotation.eulerAngles);
+            var setter = new Action<Vector3>(value => target.localRotation = Quaternion.Euler(value));
             return ApplyZ(getter, setter, type, Wrap(begin, end), end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalRotateAsync(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalRotateAsync(this Transform target, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalRotateAsync(transform.localRotation.eulerAngles, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalRotateAsync(target.localRotation.eulerAngles, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalRotateXAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalRotateXAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalRotateXAsync(transform.localRotation.eulerAngles.x, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalRotateXAsync(target.localRotation.eulerAngles.x, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalRotateYAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalRotateYAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalRotateYAsync(transform.localRotation.eulerAngles.y, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalRotateYAsync(target.localRotation.eulerAngles.y, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalRotateZAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalRotateZAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalRotateZAsync(transform.localRotation.eulerAngles.z, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalRotateZAsync(target.localRotation.eulerAngles.z, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalRotateAsync(this Transform transform, Quaternion begin, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalRotateAsync(this Transform target, Quaternion begin, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalRotateAsync(begin.eulerAngles, end.eulerAngles, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalRotateAsync(begin.eulerAngles, end.eulerAngles, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalRotateAsync(this Transform transform, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalRotateAsync(this Transform target, Quaternion end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalRotateAsync(transform.localRotation, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalRotateAsync(target.localRotation, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
         #endregion
 
         #region LocalScale
 
-        public static UniTask LocalScaleAsync(this Transform transform, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<Vector3>(value => transform.localScale = value);
+            var wrapper = new Action<Vector3>(value => target.localScale = value);
             return Apply(wrapper, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalScaleXAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleXAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.localScale);
-            var setter = new Action<Vector3>(value => transform.localScale = value);
+            var getter = new Func<Vector3>(() => target.localScale);
+            var setter = new Action<Vector3>(value => target.localScale = value);
             return ApplyX(getter, setter, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalScaleYAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleYAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.localScale);
-            var setter = new Action<Vector3>(value => transform.localScale = value);
+            var getter = new Func<Vector3>(() => target.localScale);
+            var setter = new Action<Vector3>(value => target.localScale = value);
             return ApplyY(getter, setter, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalScaleZAsync(this Transform transform, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleZAsync(this Transform target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var getter = new Func<Vector3>(() => transform.localScale);
-            var setter = new Action<Vector3>(value => transform.localScale = value);
+            var getter = new Func<Vector3>(() => target.localScale);
+            var setter = new Action<Vector3>(value => target.localScale = value);
             return ApplyZ(getter, setter, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalScaleAsync(this Transform transform, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleAsync(this Transform target, Vector3 end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalScaleAsync(transform.localScale, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalScaleAsync(target.localScale, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalScaleXAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleXAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalScaleXAsync(transform.localScale.x, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalScaleXAsync(target.localScale.x, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalScaleYAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleYAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalScaleYAsync(transform.localScale.y, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalScaleYAsync(target.localScale.y, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask LocalScaleZAsync(this Transform transform, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask LocalScaleZAsync(this Transform target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return transform.LocalScaleZAsync(transform.localScale.z, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.LocalScaleZAsync(target.localScale.z, end, duration, type, ignoreTimeScale, timing, cancellationToken);
         }
 
         #endregion
@@ -296,9 +296,9 @@ namespace UniT.Easings
         {
             var wrapper = new Action<float>(value =>
             {
-                var vector = getter();
-                vector.x = value;
-                setter(vector);
+                var next = getter();
+                next.x = value;
+                setter(next);
             });
             return Easing.Apply(wrapper, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
@@ -307,9 +307,9 @@ namespace UniT.Easings
         {
             var wrapper = new Action<float>(value =>
             {
-                var vector = getter();
-                vector.y = value;
-                setter(vector);
+                var next = getter();
+                next.y = value;
+                setter(next);
             });
             return Easing.Apply(wrapper, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
@@ -318,9 +318,9 @@ namespace UniT.Easings
         {
             var wrapper = new Action<float>(value =>
             {
-                var vector = getter();
-                vector.z = value;
-                setter(vector);
+                var next = getter();
+                next.z = value;
+                setter(next);
             });
             return Easing.Apply(wrapper, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
         }
