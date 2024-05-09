@@ -8,15 +8,15 @@ namespace UniT.Easings
 
     public static class SliderExtensions
     {
-        public static UniTask SlideAsync(this Slider target, float begin, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask SlideAsync(this Slider target, float begin, float end, float duration, Easing.Function function = default, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var wrapper = new Action<float>(value => target.value = value);
-            return Easing.Apply(wrapper, type, begin, end, duration, ignoreTimeScale, timing, cancellationToken);
+            return Easing.Apply(wrapper, begin, end, duration, function, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask SlideAsync(this Slider target, float end, float duration, Easing.Type type = Easing.Type.Linear, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask SlideAsync(this Slider target, float end, float duration, Easing.Function function = default, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.SlideAsync(target.value, end, duration, type, ignoreTimeScale, timing, cancellationToken);
+            return target.SlideAsync(target.value, end, duration, function, ignoreTimeScale, timing, cancellationToken);
         }
     }
 }
