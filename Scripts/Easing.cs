@@ -1,3 +1,4 @@
+#nullable enable
 namespace UniT.Easings
 {
     using System;
@@ -7,7 +8,7 @@ namespace UniT.Easings
     {
         public readonly struct Function
         {
-            private readonly Func<float, float> function;
+            private readonly Func<float, float>? function;
 
             public Function(Func<float, float> function) => this.function = function;
 

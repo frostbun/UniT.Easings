@@ -1,4 +1,5 @@
 ﻿#if UNIT_EASINGS_UNITASK
+#nullable enable
 namespace UniT.Easings
 {
     using System;
