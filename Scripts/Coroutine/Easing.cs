@@ -8,7 +8,7 @@ namespace UniT.Easings
 
     public static partial class Easing
     {
-        public static IEnumerator Apply(Action<float> action, float duration, Function function = default, bool ignoreTimeScale = false, Action callback = null)
+        public static IEnumerator Apply(Action<float> action, float duration, Function function = default, bool ignoreTimeScale = false, Action? callback = null)
         {
             var time = 0f;
             while (time < duration)
@@ -21,13 +21,13 @@ namespace UniT.Easings
             callback?.Invoke();
         }
 
-        public static IEnumerator Apply(Action<float> action, float begin, float end, float duration, Function function = default, bool ignoreTimeScale = false, Action callback = null)
+        public static IEnumerator Apply(Action<float> action, float begin, float end, float duration, Function function = default, bool ignoreTimeScale = false, Action? callback = null)
         {
             var wrapper = new Action<float>(value => action(begin + (end - begin) * value));
             return Apply(wrapper, duration, function, ignoreTimeScale, callback);
         }
 
-        public static IEnumerator Apply(Action<int> action, int begin, int end, float duration, Function function = default, bool ignoreTimeScale = false, Action callback = null)
+        public static IEnumerator Apply(Action<int> action, int begin, int end, float duration, Function function = default, bool ignoreTimeScale = false, Action? callback = null)
         {
             var last = 0;
             var wrapper = new Action<float>(value =>
