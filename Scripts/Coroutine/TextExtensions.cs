@@ -1,11 +1,11 @@
-#if !UNIT_EASINGS_UNITASK
+#if !UNIT_UNITASK
 #nullable enable
 namespace UniT.Easings
 {
     using System;
     using System.Collections;
     using UnityEngine.UI;
-    #if UNIT_EASINGS_TMP
+    #if UNIT_TMP
     using TMPro;
     #endif
 
@@ -23,7 +23,7 @@ namespace UniT.Easings
             return Easing.Apply(wrapper, begin, end, duration, function, ignoreTimeScale, callback);
         }
 
-        #if UNIT_EASINGS_TMP
+        #if UNIT_TMP
         public static IEnumerator CountAsync(this TMP_Text target, float begin, float end, float duration, Func<float, string> formatter, Easing.Function function = default, bool ignoreTimeScale = false, Action? callback = null)
         {
             var wrapper = new Action<float>(value => target.text = formatter(value));
