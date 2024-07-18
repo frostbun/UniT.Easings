@@ -9,12 +9,12 @@
     {
       "name": "com.cysharp.unitask",
       "expression": "",
-      "define": "UNIT_EASINGS_UNITASK"
+      "define": "UNIT_UNITASK"
     },
     {
       "name": "com.unity.textmeshpro",
       "expression": "",
-      "define": "UNIT_EASINGS_TMP"
+      "define": "UNIT_TMP"
     }
   ]
 }
