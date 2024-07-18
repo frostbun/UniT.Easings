@@ -9,25 +9,26 @@ namespace UniT.Easings
 
     public static partial class Easing
     {
-        public static async UniTask Apply(Action<float> action, float duration, Function function = default, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static async UniTask Apply(Action<float> action, float duration, Function? function = null, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
+            function ??= Default;
             var time = 0f;
             while (time < duration)
             {
-                action(function.Calculate(time / duration));
+                action(function(time / duration));
                 await UniTask.NextFrame(timing, cancellationToken);
                 time += ignoreTimeScale ? Time.unscaledDeltaTime : Time.deltaTime;
             }
-            action(function.Calculate(1));
+            action(function(1));
         }
 
-        public static UniTask Apply(Action<float> action, float begin, float end, float duration, Function function = default, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask Apply(Action<float> action, float begin, float end, float duration, Function? function = null, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var wrapper = new Action<float>(value => action(begin + (end - begin) * value));
             return Apply(wrapper, duration, function, ignoreTimeScale, timing, cancellationToken);
         }
 
-        public static UniTask Apply(Action<int> action, int begin, int end, float duration, Function function = default, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask Apply(Action<int> action, int begin, int end, float duration, Function? function = null, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var last = 0;
             var wrapper = new Action<float>(value =>
