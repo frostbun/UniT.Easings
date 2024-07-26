@@ -282,6 +282,16 @@ namespace UniT.Easings
             return target.LocalScaleZAsync(target.localScale.z, end, duration, function, ignoreTimeScale, timing, cancellationToken);
         }
 
+        public static UniTask LocalScaleAsync(this Transform target, float begin, float end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.LocalScaleAsync(new Vector3(begin, begin, begin), new Vector3(end, end, end), duration, function, ignoreTimeScale, timing, cancellationToken);
+        }
+
+        public static UniTask LocalScaleAsync(this Transform target, float end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.LocalScaleAsync(new Vector3(end, end, end), duration, function, ignoreTimeScale, timing, cancellationToken);
+        }
+
         #endregion
 
         #region Private
