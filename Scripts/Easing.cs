@@ -135,7 +135,7 @@ namespace UniT.Easings
 
         #region Bounce
 
-        public static readonly Function InBounce = x => 1 - OutBounce(1 - x);
+        public static readonly Function InBounce = x => 1 - OutBounce!(1 - x);
 
         public static readonly Function OutBounce = x => x switch
         {
