@@ -68,6 +68,16 @@ namespace UniT.Easings
             return target.FadeAsync(target.color.a, end, duration, function, ignoreTimeScale, callback);
         }
 
+        public static IEnumerator FadeInAsync(this Graphic target, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            return target.FadeAsync(0f, 1f, duration, function, ignoreTimeScale, callback);
+        }
+
+        public static IEnumerator FadeOutAsync(this Graphic target, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            return target.FadeAsync(1f, 0f, duration, function, ignoreTimeScale, callback);
+        }
+
         #region Private
 
         private static IEnumerator Apply(Action<Color> action, Color begin, Color end, float duration, Easing.Function? function, bool ignoreTimeScale, Action? callback)

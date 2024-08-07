@@ -17,7 +17,9 @@ namespace UniT.Easings
             {
                 action(function(time / duration));
                 await UniTask.NextFrame(timing, cancellationToken);
-                time += ignoreTimeScale ? Time.unscaledDeltaTime : Time.deltaTime;
+                time += timing is PlayerLoopTiming.FixedUpdate or PlayerLoopTiming.LastFixedUpdate
+                    ? ignoreTimeScale ? Time.fixedUnscaledDeltaTime : Time.fixedDeltaTime
+                    : ignoreTimeScale ? Time.unscaledDeltaTime : Time.deltaTime;
             }
             action(function(1));
         }

@@ -69,6 +69,16 @@ namespace UniT.Easings
             return target.FadeAsync(target.color.a, end, duration, function, ignoreTimeScale, timing, cancellationToken);
         }
 
+        public static UniTask FadeInAsync(this Graphic target, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.FadeAsync(0f, 1f, duration, function, ignoreTimeScale, timing, cancellationToken);
+        }
+
+        public static UniTask FadeOutAsync(this Graphic target, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.FadeAsync(1f, 0f, duration, function, ignoreTimeScale, timing, cancellationToken);
+        }
+
         #region Private
 
         private static UniTask Apply(Action<Color> action, Color begin, Color end, float duration, Easing.Function? function, bool ignoreTimeScale, PlayerLoopTiming timing, CancellationToken cancellationToken)
