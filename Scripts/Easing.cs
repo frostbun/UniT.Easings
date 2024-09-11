@@ -9,13 +9,13 @@ namespace UniT.Easings
 
         public static readonly Function Linear = x => x;
 
-        #region Since
+        #region Sine
 
-        public static readonly Function InSince = x => 1 - Mathf.Cos(x * PI / 2);
+        public static readonly Function InSine = x => 1 - Mathf.Cos(x * PI / 2);
 
-        public static readonly Function OutSince = x => Mathf.Sin(x * PI / 2);
+        public static readonly Function OutSine = x => Mathf.Sin(x * PI / 2);
 
-        public static readonly Function InOutSince = x => (1 - Mathf.Cos(x * PI)) / 2;
+        public static readonly Function InOutSine = x => (1 - Mathf.Cos(x * PI)) / 2;
 
         #endregion
 
