@@ -232,6 +232,67 @@ namespace UniT.Easings
 
         #endregion
 
+        #region Scale
+
+        public static IEnumerator ScaleAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            var wrapper = new Action<Vector3>(target.SetScale);
+            return Apply(wrapper, begin, end, duration, function, ignoreTimeScale, callback);
+        }
+
+        public static IEnumerator ScaleXAsync(this Transform target, float begin, float end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            var getter = new Func<Vector3>(() => target.lossyScale);
+            var setter = new Action<Vector3>(target.SetScale);
+            return ApplyX(getter, setter, begin, end, duration, function, ignoreTimeScale, callback);
+        }
+
+        public static IEnumerator ScaleYAsync(this Transform target, float begin, float end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            var getter = new Func<Vector3>(() => target.lossyScale);
+            var setter = new Action<Vector3>(target.SetScale);
+            return ApplyY(getter, setter, begin, end, duration, function, ignoreTimeScale, callback);
+        }
+
+        public static IEnumerator ScaleZAsync(this Transform target, float begin, float end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            var getter = new Func<Vector3>(() => target.lossyScale);
+            var setter = new Action<Vector3>(target.SetScale);
+            return ApplyZ(getter, setter, begin, end, duration, function, ignoreTimeScale, callback);
+        }
+
+        public static IEnumerator ScaleAsync(this Transform target, Vector3 end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            return target.ScaleAsync(target.lossyScale, end, duration, function, ignoreTimeScale, callback);
+        }
+
+        public static IEnumerator ScaleXAsync(this Transform target, float end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            return target.ScaleXAsync(target.lossyScale.x, end, duration, function, ignoreTimeScale, callback);
+        }
+
+        public static IEnumerator ScaleYAsync(this Transform target, float end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            return target.ScaleYAsync(target.lossyScale.y, end, duration, function, ignoreTimeScale, callback);
+        }
+
+        public static IEnumerator ScaleZAsync(this Transform target, float end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            return target.ScaleZAsync(target.lossyScale.z, end, duration, function, ignoreTimeScale, callback);
+        }
+
+        public static IEnumerator ScaleAsync(this Transform target, float begin, float end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            return target.ScaleAsync(new Vector3(begin, begin, begin), new Vector3(end, end, end), duration, function, ignoreTimeScale, callback);
+        }
+
+        public static IEnumerator ScaleAsync(this Transform target, float end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        {
+            return target.ScaleAsync(new Vector3(end, end, end), duration, function, ignoreTimeScale, callback);
+        }
+
+        #endregion
+
         #region LocalScale
 
         public static IEnumerator LocalScaleAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)

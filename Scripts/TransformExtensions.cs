@@ -5,6 +5,12 @@ namespace UniT.Easings
 
     public static partial class TransformExtensions
     {
+        private static void SetScale(this Transform transform, Vector3 scale)
+        {
+            var lossyScale = transform.lossyScale;
+            transform.localScale = new Vector3(scale.x / lossyScale.x, scale.y / lossyScale.y, scale.z / lossyScale.z);
+        }
+
         private static Vector3 Normalize(Vector3 begin, Vector3 end)
         {
             begin.x = Normalize(begin.x, end.x);
