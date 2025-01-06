@@ -7,10 +7,13 @@ namespace UniT.Easings
     {
         private static void SetScale(this Transform transform, Vector3 scale)
         {
-            var parent = transform.parent;
-            transform.parent     = null;
-            transform.localScale = scale;
-            transform.parent     = parent;
+            var lossyScale = transform.lossyScale;
+            var localScale = transform.localScale;
+            transform.localScale = new Vector3(
+                scale.x * localScale.x / lossyScale.x,
+                scale.y * localScale.y / lossyScale.y,
+                scale.z * localScale.z / lossyScale.z
+            );
         }
 
         private static Vector3 Normalize(Vector3 begin, Vector3 end)
