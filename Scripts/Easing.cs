@@ -122,7 +122,7 @@ namespace UniT.Easings
 
         public static readonly Function InElastic = x => x is 0 or 1 ? x : -Mathf.Pow(2, 10 * x - 10) * Mathf.Sin((x * 10 - 10.75f) * C4);
 
-        public static readonly Function OutElastic = x => x is 0 or 1 ? x : Mathf.Pow(2, -10 * x) * Mathf.Sin((x * 10 - 0.75f) * C4) + 1;
+        public static readonly Function OutElastic = x => x is 0 or 1 ? x : Mathf.Pow(2, -10 * x) * Mathf.Sin((x * 10 - .75f) * C4) + 1;
 
         public static readonly Function InOutElastic = x => x switch
         {

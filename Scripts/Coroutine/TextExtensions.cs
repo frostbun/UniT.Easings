@@ -5,9 +5,7 @@ namespace UniT.Easings
     using System;
     using System.Collections;
     using UnityEngine.UI;
-    #if UNIT_TMP
     using TMPro;
-    #endif
 
     public static class TextExtensions
     {
@@ -23,7 +21,6 @@ namespace UniT.Easings
             return Easing.Apply(wrapper, begin, end, duration, function, ignoreTimeScale, callback);
         }
 
-        #if UNIT_TMP
         public static IEnumerator CountAsync(this TMP_Text target, float begin, float end, float duration, Func<float, string> formatter, Easing.Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
         {
             var wrapper = new Action<float>(value => target.text = formatter(value));
@@ -35,7 +32,6 @@ namespace UniT.Easings
             var wrapper = new Action<int>(value => target.text = formatter(value));
             return Easing.Apply(wrapper, begin, end, duration, function, ignoreTimeScale, callback);
         }
-        #endif
     }
 }
 #endif

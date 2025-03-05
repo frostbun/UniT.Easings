@@ -10,11 +10,6 @@
       "name": "com.cysharp.unitask",
       "expression": "",
       "define": "UNIT_UNITASK"
-    },
-    {
-      "name": "com.unity.textmeshpro",
-      "expression": "",
-      "define": "UNIT_TMP"
     }
   ]
 }
