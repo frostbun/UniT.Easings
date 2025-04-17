@@ -5,32 +5,30 @@ namespace UniT.Easings
     using System;
     using System.Threading;
     using Cysharp.Threading.Tasks;
-    using UnityEngine;
 
     public static partial class Easing
     {
-        public static async UniTask Apply(Action<float> action, float duration, Function? function = null, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static async UniTask Apply(Action<float> action, float duration, Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            function ??= Default;
+            easing ??= Default;
+            timer  ??= Timer.Default;
             var time = 0f;
             while (time < duration)
             {
-                action(function(time / duration));
+                action(easing(time / duration));
                 await UniTask.NextFrame(timing, cancellationToken);
-                time += timing is PlayerLoopTiming.FixedUpdate or PlayerLoopTiming.LastFixedUpdate
-                    ? ignoreTimeScale ? Time.fixedUnscaledDeltaTime : Time.fixedDeltaTime
-                    : ignoreTimeScale ? Time.unscaledDeltaTime : Time.deltaTime;
+                time += timer();
             }
-            action(function(1));
+            action(easing(1));
         }
 
-        public static UniTask Apply(Action<float> action, float begin, float end, float duration, Function? function = null, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask Apply(Action<float> action, float begin, float end, float duration, Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var wrapper = new Action<float>(value => action(begin + (end - begin) * value));
-            return Apply(wrapper, duration, function, ignoreTimeScale, timing, cancellationToken);
+            return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
 
-        public static UniTask Apply(Action<int> action, int begin, int end, float duration, Function? function = null, bool ignoreTimeScale = false, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        public static UniTask Apply(Action<int> action, int begin, int end, float duration, Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             var last = 0;
             var wrapper = new Action<float>(value =>
@@ -40,7 +38,7 @@ namespace UniT.Easings
                 action(curr);
                 last = curr;
             });
-            return Apply(wrapper, begin, end, duration, function, ignoreTimeScale, timing, cancellationToken);
+            return Apply(wrapper, begin, end, duration, easing, timer, timing, cancellationToken);
         }
     }
 }

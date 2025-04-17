@@ -4,31 +4,31 @@ namespace UniT.Easings
 {
     using System;
     using System.Collections;
-    using UnityEngine;
 
     public static partial class Easing
     {
-        public static IEnumerator Apply(Action<float> action, float duration, Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        public static IEnumerator Apply(Action<float> action, float duration, Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            function ??= Default;
+            easing ??= Default;
+            timer  ??= Timer.Default;
             var time = 0f;
             while (time < duration)
             {
-                action(function(time / duration));
+                action(easing(time / duration));
                 yield return null;
-                time += ignoreTimeScale ? Time.unscaledDeltaTime : Time.deltaTime;
+                time += timer();
             }
-            action(function(1));
+            action(easing(1));
             callback?.Invoke();
         }
 
-        public static IEnumerator Apply(Action<float> action, float begin, float end, float duration, Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        public static IEnumerator Apply(Action<float> action, float begin, float end, float duration, Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
             var wrapper = new Action<float>(value => action(begin + (end - begin) * value));
-            return Apply(wrapper, duration, function, ignoreTimeScale, callback);
+            return Apply(wrapper, duration, easing, timer, callback);
         }
 
-        public static IEnumerator Apply(Action<int> action, int begin, int end, float duration, Function? function = null, bool ignoreTimeScale = false, Action? callback = null)
+        public static IEnumerator Apply(Action<int> action, int begin, int end, float duration, Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
             var last = 0;
             var wrapper = new Action<float>(value =>
@@ -38,7 +38,7 @@ namespace UniT.Easings
                 action(curr);
                 last = curr;
             });
-            return Apply(wrapper, begin, end, duration, function, ignoreTimeScale, callback);
+            return Apply(wrapper, begin, end, duration, easing, timer, callback);
         }
     }
 }
