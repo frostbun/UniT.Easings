@@ -4,6 +4,7 @@ namespace UniT.Easings
 {
     using System;
     using System.Collections;
+    using UniT.Extensions;
     using UnityEngine;
 
     public static partial class TransformExtensions
@@ -12,29 +13,22 @@ namespace UniT.Easings
 
         public static IEnumerator MoveAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var wrapper = new Action<Vector3>(value => target.position = value);
-            return Apply(wrapper, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetPosition, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator MoveXAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.position);
-            var setter = new Action<Vector3>(value => target.position = value);
-            return ApplyX(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetPositionX, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator MoveYAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.position);
-            var setter = new Action<Vector3>(value => target.position = value);
-            return ApplyY(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetPositionY, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator MoveZAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.position);
-            var setter = new Action<Vector3>(value => target.position = value);
-            return ApplyZ(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetPositionZ, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator MoveAsync(this Transform target, Vector3 end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
@@ -63,29 +57,22 @@ namespace UniT.Easings
 
         public static IEnumerator LocalMoveAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var wrapper = new Action<Vector3>(value => target.localPosition = value);
-            return Apply(wrapper, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalPosition, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalMoveXAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.localPosition);
-            var setter = new Action<Vector3>(value => target.localPosition = value);
-            return ApplyX(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalPositionX, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalMoveYAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.localPosition);
-            var setter = new Action<Vector3>(value => target.localPosition = value);
-            return ApplyY(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalPositionY, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalMoveZAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.localPosition);
-            var setter = new Action<Vector3>(value => target.localPosition = value);
-            return ApplyZ(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalPositionZ, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalMoveAsync(this Transform target, Vector3 end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
@@ -114,59 +101,52 @@ namespace UniT.Easings
 
         public static IEnumerator RotateAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            var wrapper = new Action<Vector3>(value => target.rotation = Quaternion.Euler(value));
-            return Apply(wrapper, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetEulerAngle, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator RotateXAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.rotation.eulerAngles);
-            var setter = new Action<Vector3>(value => target.rotation = Quaternion.Euler(value));
-            return ApplyX(getter, setter, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetEulerAngleX, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator RotateYAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.rotation.eulerAngles);
-            var setter = new Action<Vector3>(value => target.rotation = Quaternion.Euler(value));
-            return ApplyY(getter, setter, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetEulerAngleY, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator RotateZAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.rotation.eulerAngles);
-            var setter = new Action<Vector3>(value => target.rotation = Quaternion.Euler(value));
-            return ApplyZ(getter, setter, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetEulerAngleZ, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator RotateAsync(this Transform target, Vector3 end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.RotateAsync(target.rotation.eulerAngles, end, duration, easing, normalize, timer, callback);
+            return target.RotateAsync(target.eulerAngles, end, duration, easing, normalize, timer, callback);
         }
 
         public static IEnumerator RotateXAsync(this Transform target, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.RotateXAsync(target.rotation.eulerAngles.x, end, duration, easing, normalize, timer, callback);
+            return target.RotateXAsync(target.eulerAngles.x, end, duration, easing, normalize, timer, callback);
         }
 
         public static IEnumerator RotateYAsync(this Transform target, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.RotateYAsync(target.rotation.eulerAngles.y, end, duration, easing, normalize, timer, callback);
+            return target.RotateYAsync(target.eulerAngles.y, end, duration, easing, normalize, timer, callback);
         }
 
         public static IEnumerator RotateZAsync(this Transform target, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.RotateZAsync(target.rotation.eulerAngles.z, end, duration, easing, normalize, timer, callback);
+            return target.RotateZAsync(target.eulerAngles.z, end, duration, easing, normalize, timer, callback);
         }
 
-        public static IEnumerator RotateAsync(this Transform target, Quaternion begin, Quaternion end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator RotateAsync(this Transform target, Quaternion begin, Quaternion end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.RotateAsync(begin.eulerAngles, end.eulerAngles, duration, easing, normalize, timer, callback);
+            return target.RotateAsync(begin.eulerAngles, end.eulerAngles, duration, easing, false, timer, callback);
         }
 
-        public static IEnumerator RotateAsync(this Transform target, Quaternion end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator RotateAsync(this Transform target, Quaternion end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.RotateAsync(target.rotation, end, duration, easing, normalize, timer, callback);
+            return target.RotateAsync(target.rotation, end, duration, easing, timer, callback);
         }
 
         #endregion
@@ -175,59 +155,52 @@ namespace UniT.Easings
 
         public static IEnumerator LocalRotateAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            var wrapper = new Action<Vector3>(value => target.localRotation = Quaternion.Euler(value));
-            return Apply(wrapper, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalEulerAngle, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalRotateXAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.localRotation.eulerAngles);
-            var setter = new Action<Vector3>(value => target.localRotation = Quaternion.Euler(value));
-            return ApplyX(getter, setter, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalEulerAngleX, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalRotateYAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.localRotation.eulerAngles);
-            var setter = new Action<Vector3>(value => target.localRotation = Quaternion.Euler(value));
-            return ApplyY(getter, setter, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalEulerAngleY, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalRotateZAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.localRotation.eulerAngles);
-            var setter = new Action<Vector3>(value => target.localRotation = Quaternion.Euler(value));
-            return ApplyZ(getter, setter, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalEulerAngleZ, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalRotateAsync(this Transform target, Vector3 end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.LocalRotateAsync(target.localRotation.eulerAngles, end, duration, easing, normalize, timer, callback);
+            return target.LocalRotateAsync(target.localEulerAngles, end, duration, easing, normalize, timer, callback);
         }
 
         public static IEnumerator LocalRotateXAsync(this Transform target, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.LocalRotateXAsync(target.localRotation.eulerAngles.x, end, duration, easing, normalize, timer, callback);
+            return target.LocalRotateXAsync(target.localEulerAngles.x, end, duration, easing, normalize, timer, callback);
         }
 
         public static IEnumerator LocalRotateYAsync(this Transform target, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.LocalRotateYAsync(target.localRotation.eulerAngles.y, end, duration, easing, normalize, timer, callback);
+            return target.LocalRotateYAsync(target.localEulerAngles.y, end, duration, easing, normalize, timer, callback);
         }
 
         public static IEnumerator LocalRotateZAsync(this Transform target, float end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.LocalRotateZAsync(target.localRotation.eulerAngles.z, end, duration, easing, normalize, timer, callback);
+            return target.LocalRotateZAsync(target.localEulerAngles.z, end, duration, easing, normalize, timer, callback);
         }
 
-        public static IEnumerator LocalRotateAsync(this Transform target, Quaternion begin, Quaternion end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator LocalRotateAsync(this Transform target, Quaternion begin, Quaternion end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.LocalRotateAsync(begin.eulerAngles, end.eulerAngles, duration, easing, normalize, timer, callback);
+            return target.LocalRotateAsync(begin.eulerAngles, end.eulerAngles, duration, easing, false, timer, callback);
         }
 
-        public static IEnumerator LocalRotateAsync(this Transform target, Quaternion end, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator LocalRotateAsync(this Transform target, Quaternion end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.LocalRotateAsync(target.localRotation, end, duration, easing, normalize, timer, callback);
+            return target.LocalRotateAsync(target.localRotation, end, duration, easing, timer, callback);
         }
 
         #endregion
@@ -236,29 +209,22 @@ namespace UniT.Easings
 
         public static IEnumerator ScaleAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var wrapper = new Action<Vector3>(target.SetScale);
-            return Apply(wrapper, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetScale, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator ScaleXAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.lossyScale);
-            var setter = new Action<Vector3>(target.SetScale);
-            return ApplyX(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetScaleX, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator ScaleYAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.lossyScale);
-            var setter = new Action<Vector3>(target.SetScale);
-            return ApplyY(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetScaleY, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator ScaleZAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.lossyScale);
-            var setter = new Action<Vector3>(target.SetScale);
-            return ApplyZ(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetScaleZ, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator ScaleAsync(this Transform target, Vector3 end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
@@ -297,29 +263,22 @@ namespace UniT.Easings
 
         public static IEnumerator LocalScaleAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var wrapper = new Action<Vector3>(value => target.localScale = value);
-            return Apply(wrapper, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalScale, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalScaleXAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.localScale);
-            var setter = new Action<Vector3>(value => target.localScale = value);
-            return ApplyX(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalScaleX, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalScaleYAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.localScale);
-            var setter = new Action<Vector3>(value => target.localScale = value);
-            return ApplyY(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalScaleY, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalScaleZAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            var getter = new Func<Vector3>(() => target.localScale);
-            var setter = new Action<Vector3>(value => target.localScale = value);
-            return ApplyZ(getter, setter, begin, end, duration, easing, timer, callback);
+            return Easing.Apply(target.SetLocalScaleZ, begin, end, duration, easing, timer, callback);
         }
 
         public static IEnumerator LocalScaleAsync(this Transform target, Vector3 end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
@@ -350,50 +309,6 @@ namespace UniT.Easings
         public static IEnumerator LocalScaleAsync(this Transform target, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
             return target.LocalScaleAsync(new Vector3(end, end, end), duration, easing, timer, callback);
-        }
-
-        #endregion
-
-        #region Private
-
-        private static IEnumerator Apply(Action<Vector3> action, Vector3 begin, Vector3 end, float duration, Easing.Function? easing, Timer.Function? timer, Action? callback)
-        {
-            var diff    = end - begin;
-            var wrapper = new Action<float>(value => action(begin + diff * value));
-            return Easing.Apply(wrapper, duration, easing, timer, callback);
-        }
-
-        private static IEnumerator ApplyX(Func<Vector3> getter, Action<Vector3> setter, float begin, float end, float duration, Easing.Function? easing, Timer.Function? timer, Action? callback)
-        {
-            var wrapper = new Action<float>(value =>
-            {
-                var next = getter();
-                next.x = value;
-                setter(next);
-            });
-            return Easing.Apply(wrapper, begin, end, duration, easing, timer, callback);
-        }
-
-        private static IEnumerator ApplyY(Func<Vector3> getter, Action<Vector3> setter, float begin, float end, float duration, Easing.Function? easing, Timer.Function? timer, Action? callback)
-        {
-            var wrapper = new Action<float>(value =>
-            {
-                var next = getter();
-                next.y = value;
-                setter(next);
-            });
-            return Easing.Apply(wrapper, begin, end, duration, easing, timer, callback);
-        }
-
-        private static IEnumerator ApplyZ(Func<Vector3> getter, Action<Vector3> setter, float begin, float end, float duration, Easing.Function? easing, Timer.Function? timer, Action? callback)
-        {
-            var wrapper = new Action<float>(value =>
-            {
-                var next = getter();
-                next.z = value;
-                setter(next);
-            });
-            return Easing.Apply(wrapper, begin, end, duration, easing, timer, callback);
         }
 
         #endregion

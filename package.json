@@ -2,12 +2,15 @@
   "name": "com.frostbun.unit.easings",
   "displayName": "UniT Easings",
   "description": "Animate Unity using easing functions",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "unity": "2022.3",
   "license": "MIT",
   "author": {
     "name": "frostbun",
     "email": "manhnb1911@gmail.com",
     "url": "https://github.com/frostbun"
+  },
+  "dependencies": {
+    "com.frostbun.unit.extensions": "1.0.81"
   }
 }

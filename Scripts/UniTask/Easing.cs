@@ -5,6 +5,7 @@ namespace UniT.Easings
     using System;
     using System.Threading;
     using Cysharp.Threading.Tasks;
+    using UnityEngine;
 
     public static partial class Easing
     {
@@ -39,6 +40,13 @@ namespace UniT.Easings
                 last = curr;
             });
             return Apply(wrapper, begin, end, duration, easing, timer, timing, cancellationToken);
+        }
+
+        public static UniTask Apply(Action<Vector3> action, Vector3 begin, Vector3 end, float duration, Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            var diff    = end - begin;
+            var wrapper = new Action<float>(value => action(begin + diff * value));
+            return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
     }
 }
