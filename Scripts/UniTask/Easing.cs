@@ -48,6 +48,13 @@ namespace UniT.Easings
             var wrapper = new Action<float>(value => action(begin + diff * value));
             return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
+
+        public static UniTask Apply(Action<Color> action, Color begin, Color end, float duration, Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            var diff    = end - begin;
+            var wrapper = new Action<float>(value => action(begin + diff * value));
+            return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
+        }
     }
 }
 #endif

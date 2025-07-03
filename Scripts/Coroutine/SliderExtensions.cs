@@ -21,12 +21,12 @@ namespace UniT.Easings
 
         public static IEnumerator SlideInAsync(this Slider target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.SlideAsync(0f, 1f, duration, easing, timer, callback);
+            return target.SlideAsync(0, 1, duration, easing, timer, callback);
         }
 
         public static IEnumerator SlideOutAsync(this Slider target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.SlideAsync(1f, 0f, duration, easing, timer, callback);
+            return target.SlideAsync(1, 0, duration, easing, timer, callback);
         }
 
         public static IEnumerator FillAsync(this Image target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
@@ -42,12 +42,12 @@ namespace UniT.Easings
 
         public static IEnumerator FillInAsync(this Image target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.FillAsync(0f, 1f, duration, easing, timer, callback);
+            return target.FillAsync(0, 1, duration, easing, timer, callback);
         }
 
         public static IEnumerator FillOutAsync(this Image target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.FillAsync(1f, 0f, duration, easing, timer, callback);
+            return target.FillAsync(1, 0, duration, easing, timer, callback);
         }
     }
 }
