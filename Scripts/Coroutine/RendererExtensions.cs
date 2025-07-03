@@ -20,12 +20,12 @@ namespace UniT.Easings
 
         public static IEnumerator BlendInAsync(this SkinnedMeshRenderer target, int index, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.BlendAsync(index, 0, 1, duration, easing, timer, callback);
+            return target.BlendAsync(index, 0, 100, duration, easing, timer, callback);
         }
 
         public static IEnumerator BlendOutAsync(this SkinnedMeshRenderer target, int index, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.BlendAsync(index, 1, 0, duration, easing, timer, callback);
+            return target.BlendAsync(index, 100, 0, duration, easing, timer, callback);
         }
     }
 }

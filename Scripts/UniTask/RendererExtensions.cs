@@ -20,12 +20,12 @@ namespace UniT.Easings
 
         public static UniTask BlendInAsync(this SkinnedMeshRenderer target, int index, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.BlendAsync(index, 0, 1, duration, easing, timer, timing, cancellationToken);
+            return target.BlendAsync(index, 0, 100, duration, easing, timer, timing, cancellationToken);
         }
 
         public static UniTask BlendOutAsync(this SkinnedMeshRenderer target, int index, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.BlendAsync(index, 1, 0, duration, easing, timer, timing, cancellationToken);
+            return target.BlendAsync(index, 100, 0, duration, easing, timer, timing, cancellationToken);
         }
     }
 }
