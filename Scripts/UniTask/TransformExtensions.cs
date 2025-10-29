@@ -51,6 +51,11 @@ namespace UniT.Easings
             return target.MoveZAsync(target.position.z, end, duration, easing, timer, timing, cancellationToken);
         }
 
+        public static UniTask ResetPositionAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.MoveAsync(Vector3.zero, duration, easing, timer, timing, cancellationToken);
+        }
+
         #endregion
 
         #region LocalMove
@@ -93,6 +98,11 @@ namespace UniT.Easings
         public static UniTask LocalMoveZAsync(this Transform target, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             return target.LocalMoveZAsync(target.localPosition.z, end, duration, easing, timer, timing, cancellationToken);
+        }
+
+        public static UniTask ResetLocalPositionAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.LocalMoveAsync(Vector3.zero, duration, easing, timer, timing, cancellationToken);
         }
 
         #endregion
@@ -149,6 +159,11 @@ namespace UniT.Easings
             return target.RotateAsync(target.rotation, end, duration, easing, timer, timing, cancellationToken);
         }
 
+        public static UniTask ResetRotationAsync(this Transform target, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.RotateAsync(Vector3.zero, duration, easing, normalize, timer, timing, cancellationToken);
+        }
+
         #endregion
 
         #region LocalRotate
@@ -201,6 +216,11 @@ namespace UniT.Easings
         public static UniTask LocalRotateAsync(this Transform target, Quaternion end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             return target.LocalRotateAsync(target.localRotation, end, duration, easing, timer, timing, cancellationToken);
+        }
+
+        public static UniTask ResetLocalRotationAsync(this Transform target, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.LocalRotateAsync(Vector3.zero, duration, easing, normalize, timer, timing, cancellationToken);
         }
 
         #endregion
@@ -257,6 +277,16 @@ namespace UniT.Easings
             return target.ScaleAsync(new Vector3(end, end, end), duration, easing, timer, timing, cancellationToken);
         }
 
+        public static UniTask ScaleInAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.ScaleAsync(0, 1, duration, easing, timer, timing, cancellationToken);
+        }
+
+        public static UniTask ScaleOutAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.ScaleAsync(1, 0, duration, easing, timer, timing, cancellationToken);
+        }
+
         #endregion
 
         #region LocalScale
@@ -309,6 +339,16 @@ namespace UniT.Easings
         public static UniTask LocalScaleAsync(this Transform target, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
             return target.LocalScaleAsync(new Vector3(end, end, end), duration, easing, timer, timing, cancellationToken);
+        }
+
+        public static UniTask LocalScaleInAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.LocalScaleAsync(0, 1, duration, easing, timer, timing, cancellationToken);
+        }
+
+        public static UniTask LocalScaleOutAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
+        {
+            return target.LocalScaleAsync(1, 0, duration, easing, timer, timing, cancellationToken);
         }
 
         #endregion

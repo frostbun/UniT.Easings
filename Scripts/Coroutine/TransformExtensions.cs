@@ -51,6 +51,11 @@ namespace UniT.Easings
             return target.MoveZAsync(target.position.z, end, duration, easing, timer, callback);
         }
 
+        public static IEnumerator ResetPositionAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        {
+            return target.MoveAsync(Vector3.zero, duration, easing, timer, callback);
+        }
+
         #endregion
 
         #region LocalMove
@@ -93,6 +98,11 @@ namespace UniT.Easings
         public static IEnumerator LocalMoveZAsync(this Transform target, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
             return target.LocalMoveZAsync(target.localPosition.z, end, duration, easing, timer, callback);
+        }
+
+        public static IEnumerator ResetLocalPositionAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        {
+            return target.LocalMoveAsync(Vector3.zero, duration, easing, timer, callback);
         }
 
         #endregion
@@ -149,6 +159,11 @@ namespace UniT.Easings
             return target.RotateAsync(target.rotation, end, duration, easing, timer, callback);
         }
 
+        public static IEnumerator ResetRotationAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        {
+            return target.RotateAsync(Vector3.zero, duration, easing, timer, callback);
+        }
+
         #endregion
 
         #region LocalRotate
@@ -201,6 +216,11 @@ namespace UniT.Easings
         public static IEnumerator LocalRotateAsync(this Transform target, Quaternion end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
             return target.LocalRotateAsync(target.localRotation, end, duration, easing, timer, callback);
+        }
+
+        public static IEnumerator ResetLocalRotationAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        {
+            return target.LocalRotateAsync(Vector3.zero, duration, easing, timer, callback);
         }
 
         #endregion
@@ -257,6 +277,16 @@ namespace UniT.Easings
             return target.ScaleAsync(new Vector3(end, end, end), duration, easing, timer, callback);
         }
 
+        public static IEnumerator ScaleInAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        {
+            return target.ScaleAsync(0, 1, duration, easing, timer, callback);
+        }
+
+        public static IEnumerator ScaleOutAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        {
+            return target.ScaleAsync(1, 0, duration, easing, timer, callback);
+        }
+
         #endregion
 
         #region LocalScale
@@ -309,6 +339,16 @@ namespace UniT.Easings
         public static IEnumerator LocalScaleAsync(this Transform target, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
             return target.LocalScaleAsync(new Vector3(end, end, end), duration, easing, timer, callback);
+        }
+
+        public static IEnumerator LocalScaleInAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        {
+            return target.LocalScaleAsync(0, 1, duration, easing, timer, callback);
+        }
+
+        public static IEnumerator LocalScaleOutAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        {
+            return target.LocalScaleAsync(1, 0, duration, easing, timer, callback);
         }
 
         #endregion
