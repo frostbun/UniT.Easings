@@ -159,9 +159,9 @@ namespace UniT.Easings
             return target.RotateAsync(target.rotation, end, duration, easing, timer, callback);
         }
 
-        public static IEnumerator ResetRotationAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator ResetRotationAsync(this Transform target, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.RotateAsync(Vector3.zero, duration, easing, timer, callback);
+            return target.RotateAsync(Vector3.zero, duration, easing, normalize, timer, callback);
         }
 
         #endregion
@@ -218,9 +218,9 @@ namespace UniT.Easings
             return target.LocalRotateAsync(target.localRotation, end, duration, easing, timer, callback);
         }
 
-        public static IEnumerator ResetLocalRotationAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator ResetLocalRotationAsync(this Transform target, float duration, Easing.Function? easing = null, bool normalize = true, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.LocalRotateAsync(Vector3.zero, duration, easing, timer, callback);
+            return target.LocalRotateAsync(Vector3.zero, duration, easing, normalize, timer, callback);
         }
 
         #endregion

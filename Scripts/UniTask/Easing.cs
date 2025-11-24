@@ -44,15 +44,13 @@ namespace UniT.Easings
 
         public static UniTask Apply(Action<Vector3> action, Vector3 begin, Vector3 end, float duration, Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var diff    = end - begin;
-            var wrapper = new Action<float>(value => action(begin + diff * value));
+            var wrapper = new Action<float>(value => action(Vector3.Lerp(begin, end, value)));
             return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
 
         public static UniTask Apply(Action<Color> action, Color begin, Color end, float duration, Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            var diff    = end - begin;
-            var wrapper = new Action<float>(value => action(begin + diff * value));
+            var wrapper = new Action<float>(value => action(Color.Lerp(begin, end, value)));
             return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
     }
