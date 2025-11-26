@@ -277,16 +277,6 @@ namespace UniT.Easings
             return target.ScaleAsync(new Vector3(end, end, end), duration, easing, timer, callback);
         }
 
-        public static IEnumerator ScaleInAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
-        {
-            return target.ScaleAsync(0, 1, duration, easing, timer, callback);
-        }
-
-        public static IEnumerator ScaleOutAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
-        {
-            return target.ScaleAsync(1, 0, duration, easing, timer, callback);
-        }
-
         #endregion
 
         #region LocalScale

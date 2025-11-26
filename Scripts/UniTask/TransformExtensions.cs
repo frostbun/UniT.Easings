@@ -277,16 +277,6 @@ namespace UniT.Easings
             return target.ScaleAsync(new Vector3(end, end, end), duration, easing, timer, timing, cancellationToken);
         }
 
-        public static UniTask ScaleInAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
-        {
-            return target.ScaleAsync(0, 1, duration, easing, timer, timing, cancellationToken);
-        }
-
-        public static UniTask ScaleOutAsync(this Transform target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
-        {
-            return target.ScaleAsync(1, 0, duration, easing, timer, timing, cancellationToken);
-        }
-
         #endregion
 
         #region LocalScale
