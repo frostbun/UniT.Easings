@@ -33,12 +33,12 @@ namespace UniT.Easings
 
         public static UniTask FadeInAsync(this SpriteRenderer target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.FadeAsync(0, 1, duration, easing, timer, timing, cancellationToken);
+            return target.FadeAsync(1, duration, easing, timer, timing, cancellationToken);
         }
 
         public static UniTask FadeOutAsync(this SpriteRenderer target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.FadeAsync(1, 0, duration, easing, timer, timing, cancellationToken);
+            return target.FadeAsync(0, duration, easing, timer, timing, cancellationToken);
         }
 
         public static UniTask FadeAsync(this CanvasGroup target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
@@ -54,12 +54,12 @@ namespace UniT.Easings
 
         public static UniTask FadeInAsync(this CanvasGroup target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.FadeAsync(0, 1, duration, easing, timer, timing, cancellationToken);
+            return target.FadeAsync(1, duration, easing, timer, timing, cancellationToken);
         }
 
         public static UniTask FadeOutAsync(this CanvasGroup target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.FadeAsync(1, 0, duration, easing, timer, timing, cancellationToken);
+            return target.FadeAsync(0, duration, easing, timer, timing, cancellationToken);
         }
 
         public static UniTask ChangeColorAsync(this Material target, Color begin, Color end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
@@ -84,12 +84,12 @@ namespace UniT.Easings
 
         public static UniTask FadeInAsync(this Material target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.FadeAsync(0, 1, duration, easing, timer, timing, cancellationToken);
+            return target.FadeAsync(1, duration, easing, timer, timing, cancellationToken);
         }
 
         public static UniTask FadeOutAsync(this Material target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.FadeAsync(1, 0, duration, easing, timer, timing, cancellationToken);
+            return target.FadeAsync(0, duration, easing, timer, timing, cancellationToken);
         }
 
         public static UniTask ChangeColorAsync(this Graphic target, Color begin, Color end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
@@ -114,12 +114,12 @@ namespace UniT.Easings
 
         public static UniTask FadeInAsync(this Graphic target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.FadeAsync(0, 1, duration, easing, timer, timing, cancellationToken);
+            return target.FadeAsync(1, duration, easing, timer, timing, cancellationToken);
         }
 
         public static UniTask FadeOutAsync(this Graphic target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default)
         {
-            return target.FadeAsync(1, 0, duration, easing, timer, timing, cancellationToken);
+            return target.FadeAsync(0, duration, easing, timer, timing, cancellationToken);
         }
     }
 }

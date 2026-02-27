@@ -32,12 +32,12 @@ namespace UniT.Easings
 
         public static IEnumerator FadeInAsync(this SpriteRenderer target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.FadeAsync(0, 1, duration, easing, timer, callback);
+            return target.FadeAsync(1, duration, easing, timer, callback);
         }
 
         public static IEnumerator FadeOutAsync(this SpriteRenderer target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.FadeAsync(1, 0, duration, easing, timer, callback);
+            return target.FadeAsync(0, duration, easing, timer, callback);
         }
 
         public static IEnumerator FadeAsync(this CanvasGroup target, float begin, float end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
@@ -53,12 +53,12 @@ namespace UniT.Easings
 
         public static IEnumerator FadeInAsync(this CanvasGroup target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.FadeAsync(0, 1, duration, easing, timer, callback);
+            return target.FadeAsync(1, duration, easing, timer, callback);
         }
 
         public static IEnumerator FadeOutAsync(this CanvasGroup target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.FadeAsync(1, 0, duration, easing, timer, callback);
+            return target.FadeAsync(0, duration, easing, timer, callback);
         }
 
         public static IEnumerator ChangeColorAsync(this Material target, Color begin, Color end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
@@ -83,12 +83,12 @@ namespace UniT.Easings
 
         public static IEnumerator FadeInAsync(this Material target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.FadeAsync(0, 1, duration, easing, timer, callback);
+            return target.FadeAsync(1, duration, easing, timer, callback);
         }
 
         public static IEnumerator FadeOutAsync(this Material target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.FadeAsync(1, 0, duration, easing, timer, callback);
+            return target.FadeAsync(0, duration, easing, timer, callback);
         }
 
         public static IEnumerator ChangeColorAsync(this Graphic target, Color begin, Color end, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
@@ -113,12 +113,12 @@ namespace UniT.Easings
 
         public static IEnumerator FadeInAsync(this Graphic target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.FadeAsync(0, 1, duration, easing, timer, callback);
+            return target.FadeAsync(1, duration, easing, timer, callback);
         }
 
         public static IEnumerator FadeOutAsync(this Graphic target, float duration, Easing.Function? easing = null, Timer.Function? timer = null, Action? callback = null)
         {
-            return target.FadeAsync(1, 0, duration, easing, timer, callback);
+            return target.FadeAsync(0, duration, easing, timer, callback);
         }
     }
 }
