@@ -8,10 +8,10 @@ namespace UniT.Easings
 
     public static partial class Easing
     {
-        public static IEnumerator Apply(Action<float> action, float duration, Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator Apply(Action<float> action, float duration, Function? easing = null, Timer? timer = null, Action? callback = null)
         {
-            easing ??= Default;
-            timer  ??= Timer.Default;
+            easing ??= DefaultFunction;
+            timer  ??= DefaultTimer;
             var time = 0f;
             while (time < duration)
             {
@@ -23,13 +23,13 @@ namespace UniT.Easings
             callback?.Invoke();
         }
 
-        public static IEnumerator Apply(Action<float> action, float begin, float end, float duration, Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator Apply(Action<float> action, float begin, float end, float duration, Function? easing = null, Timer? timer = null, Action? callback = null)
         {
             var wrapper = new Action<float>(value => action(begin + (end - begin) * value));
             return Apply(wrapper, duration, easing, timer, callback);
         }
 
-        public static IEnumerator Apply(Action<int> action, int begin, int end, float duration, Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator Apply(Action<int> action, int begin, int end, float duration, Function? easing = null, Timer? timer = null, Action? callback = null)
         {
             var last = 0;
             var wrapper = new Action<float>(value =>
@@ -42,13 +42,13 @@ namespace UniT.Easings
             return Apply(wrapper, begin, end, duration, easing, timer, callback);
         }
 
-        public static IEnumerator Apply(Action<Vector3> action, Vector3 begin, Vector3 end, float duration, Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator Apply(Action<Vector3> action, Vector3 begin, Vector3 end, float duration, Function? easing = null, Timer? timer = null, Action? callback = null)
         {
             var wrapper = new Action<float>(value => action(Vector3.Lerp(begin, end, value)));
             return Apply(wrapper, duration, easing, timer, callback);
         }
 
-        public static IEnumerator Apply(Action<Color> action, Color begin, Color end, float duration, Function? easing = null, Timer.Function? timer = null, Action? callback = null)
+        public static IEnumerator Apply(Action<Color> action, Color begin, Color end, float duration, Function? easing = null, Timer? timer = null, Action? callback = null)
         {
             var wrapper = new Action<float>(value => action(Color.Lerp(begin, end, value)));
             return Apply(wrapper, duration, easing, timer, callback);

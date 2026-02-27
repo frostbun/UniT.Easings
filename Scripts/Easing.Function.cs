@@ -166,6 +166,6 @@ namespace UniT.Easings
 
         #endregion
 
-        public static Function Default { get; set; } = OutQuad;
+        public static Function DefaultFunction { get; set; } = OutQuad;
     }
 }
