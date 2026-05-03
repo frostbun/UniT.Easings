@@ -4,6 +4,7 @@ namespace UniT.Easings
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using Cysharp.Threading.Tasks;
     using UniT.Extensions;
@@ -39,7 +40,7 @@ namespace UniT.Easings
                 }
             }
 
-            private readonly List<Data> dataList = new List<Data>();
+            private readonly List<Data> dataList = new();
 
             private void Update() => this.Update(Timing.Update);
 
@@ -89,7 +90,7 @@ namespace UniT.Easings
                     return UniTask.CompletedTask;
                 }
                 var completionSource = new UniTaskCompletionSource();
-                this.dataList.Add(new Data(action, duration, easing, timer, timing, cancellationToken, completionSource));
+                this.dataList.Add(new(action, duration, easing, timer, timing, cancellationToken, completionSource));
                 return completionSource.Task;
             }
         }
@@ -107,12 +108,14 @@ namespace UniT.Easings
             return Updater!.Add(action, duration, easing ?? DefaultFunction, timer ?? DefaultTimer, timing, cancellationToken);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask Apply(Action<float> action, float begin, float end, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {
             var wrapper = new Action<float>(value => action(begin + (end - begin) * value));
             return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask Apply(Action<int> action, int begin, int end, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {
             var last = 0;
@@ -126,12 +129,14 @@ namespace UniT.Easings
             return Apply(wrapper, begin, end, duration, easing, timer, timing, cancellationToken);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask Apply(Action<Vector3> action, Vector3 begin, Vector3 end, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {
             var wrapper = new Action<float>(value => action(Vector3.Lerp(begin, end, value)));
             return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask Apply(Action<Color> action, Color begin, Color end, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {
             var wrapper = new Action<float>(value => action(Color.Lerp(begin, end, value)));

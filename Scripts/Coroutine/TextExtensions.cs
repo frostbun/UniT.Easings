@@ -4,29 +4,34 @@ namespace UniT.Easings
 {
     using System;
     using System.Collections;
+    using System.Runtime.CompilerServices;
     using UnityEngine.UI;
     using TMPro;
 
     public static class TextExtensions
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerator CountAsync(this Text target, float begin, float end, float duration, Func<float, string> formatter, Easing.Function? easing = null, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, Action? callback = null)
         {
             var wrapper = new Action<float>(value => target.text = formatter(value));
             return Easing.Apply(wrapper, begin, end, duration, easing, timer, timing, callback);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerator CountAsync(this Text target, int begin, int end, float duration, Func<int, string> formatter, Easing.Function? easing = null, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, Action? callback = null)
         {
             var wrapper = new Action<int>(value => target.text = formatter(value));
             return Easing.Apply(wrapper, begin, end, duration, easing, timer, timing, callback);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerator CountAsync(this TMP_Text target, float begin, float end, float duration, Func<float, string> formatter, Easing.Function? easing = null, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, Action? callback = null)
         {
             var wrapper = new Action<float>(value => target.text = formatter(value));
             return Easing.Apply(wrapper, begin, end, duration, easing, timer, timing, callback);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerator CountAsync(this TMP_Text target, int begin, int end, float duration, Func<int, string> formatter, Easing.Function? easing = null, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, Action? callback = null)
         {
             var wrapper = new Action<int>(value => target.text = formatter(value));
