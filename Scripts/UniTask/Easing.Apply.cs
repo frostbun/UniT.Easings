@@ -95,17 +95,25 @@ namespace UniT.Easings
             }
         }
 
-        private static UpdaterMono? Updater;
+        private static UpdaterMono? updater;
+
+        private static UpdaterMono Updater
+        {
+            get
+            {
+                Initialize();
+                return updater!;
+            }
+        }
 
         public static void Initialize()
         {
-            if (Updater == null) Updater = new GameObject(nameof(Easing)).AddComponent<UpdaterMono>().DontDestroyOnLoad();
+            if (!updater) updater = new GameObject(nameof(Easing)).AddComponent<UpdaterMono>().DontDestroyOnLoad();
         }
 
         public static UniTask Apply(Action<float> action, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {
-            Initialize();
-            return Updater!.Add(action, duration, easing ?? DefaultFunction, timer ?? DefaultTimer, timing, cancellationToken);
+            return Updater.Add(action, duration, easing ?? DefaultFunction, timer ?? DefaultTimer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
