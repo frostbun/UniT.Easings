@@ -5,8 +5,8 @@ namespace UniT.Easings
     using System;
     using System.Collections;
     using System.Runtime.CompilerServices;
-    using UnityEngine.UI;
     using TMPro;
+    using UnityEngine.UI;
 
     public static class TextExtensions
     {

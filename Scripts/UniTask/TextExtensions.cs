@@ -6,8 +6,8 @@ namespace UniT.Easings
     using System.Runtime.CompilerServices;
     using System.Threading;
     using Cysharp.Threading.Tasks;
-    using UnityEngine.UI;
     using TMPro;
+    using UnityEngine.UI;
 
     public static class TMPExtensions
     {

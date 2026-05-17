@@ -95,21 +95,20 @@ namespace UniT.Easings
             }
         }
 
+        #if UNITY_EDITOR
         private static UpdaterMono? updater;
 
         private static UpdaterMono Updater
         {
             get
             {
-                Initialize();
-                return updater!;
+                if (!updater) updater = new GameObject(nameof(Easing)).AddComponent<UpdaterMono>().DontDestroyOnLoad();
+                return updater;
             }
         }
-
-        public static void Initialize()
-        {
-            if (!updater) updater = new GameObject(nameof(Easing)).AddComponent<UpdaterMono>().DontDestroyOnLoad();
-        }
+        #else
+        private static readonly UpdaterMono Updater = new GameObject(nameof(Easing)).AddComponent<UpdaterMono>().DontDestroyOnLoad();
+        #endif
 
         public static UniTask Apply(Action<float> action, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {

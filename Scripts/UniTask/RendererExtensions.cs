@@ -2,8 +2,8 @@
 #nullable enable
 namespace UniT.Easings
 {
-    using System.Threading;
     using System.Runtime.CompilerServices;
+    using System.Threading;
     using Cysharp.Threading.Tasks;
     using UnityEngine;
 
