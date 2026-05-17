@@ -1,0 +1,16 @@
+{
+  "name": "UniT.Easings",
+  "rootNamespace": "UniT.Easings",
+  "references": [
+    "UniT.Extensions",
+    "UniTask",
+    "Unity.TextMeshPro"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.cysharp.unitask",
+      "expression": "",
+      "define": "UNIT_UNITASK"
+    }
+  ]
+}

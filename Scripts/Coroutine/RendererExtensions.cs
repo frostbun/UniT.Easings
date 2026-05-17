@@ -1,0 +1,37 @@
+#if !UNIT_UNITASK
+#nullable enable
+namespace UniT.Easings
+{
+    using System;
+    using System.Collections;
+    using System.Runtime.CompilerServices;
+    using UnityEngine;
+
+    public static class RendererExtensions
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEnumerator BlendAsync(this SkinnedMeshRenderer target, int index, float begin, float end, float duration, Easing.Function? easing = null, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, Action? callback = null)
+        {
+            return Easing.Apply(value => target.SetBlendShapeWeight(index, value), begin, end, duration, easing, timer, timing, callback);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEnumerator BlendAsync(this SkinnedMeshRenderer target, int index, float end, float duration, Easing.Function? easing = null, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, Action? callback = null)
+        {
+            return target.BlendAsync(index, target.GetBlendShapeWeight(index), end, duration, easing, timer, timing, callback);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEnumerator BlendInAsync(this SkinnedMeshRenderer target, int index, float duration, Easing.Function? easing = null, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, Action? callback = null)
+        {
+            return target.BlendAsync(index, 0, 100, duration, easing, timer, timing, callback);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEnumerator BlendOutAsync(this SkinnedMeshRenderer target, int index, float duration, Easing.Function? easing = null, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, Action? callback = null)
+        {
+            return target.BlendAsync(index, 100, 0, duration, easing, timer, timing, callback);
+        }
+    }
+}
+#endif
