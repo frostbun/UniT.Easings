@@ -1,14 +1,14 @@
-#if UNIT_UNITASK
 #nullable enable
 namespace UniT.Easings
 {
+    using System.Diagnostics.Contracts;
     using System.Runtime.CompilerServices;
     using System.Threading;
     using Cysharp.Threading.Tasks;
     using UniT.Extensions;
     using UnityEngine;
 
-    public static partial class TransformExtensions
+    public static class TransformExtensions
     {
         #region Move
 
@@ -131,25 +131,25 @@ namespace UniT.Easings
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask RotateAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Function? easing = null, bool normalize = true, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, CancellationToken cancellationToken = default)
         {
-            return Easing.Apply(target.SetEulerAngle, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
+            return Easing.Apply(target.SetEulerAngle, normalize ? NormalizeRotation(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask RotateXAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, CancellationToken cancellationToken = default)
         {
-            return Easing.Apply(target.SetEulerAngleX, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
+            return Easing.Apply(target.SetEulerAngleX, normalize ? NormalizeRotation(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask RotateYAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, CancellationToken cancellationToken = default)
         {
-            return Easing.Apply(target.SetEulerAngleY, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
+            return Easing.Apply(target.SetEulerAngleY, normalize ? NormalizeRotation(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask RotateZAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, CancellationToken cancellationToken = default)
         {
-            return Easing.Apply(target.SetEulerAngleZ, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
+            return Easing.Apply(target.SetEulerAngleZ, normalize ? NormalizeRotation(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -201,25 +201,25 @@ namespace UniT.Easings
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask LocalRotateAsync(this Transform target, Vector3 begin, Vector3 end, float duration, Easing.Function? easing = null, bool normalize = true, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, CancellationToken cancellationToken = default)
         {
-            return Easing.Apply(target.SetLocalEulerAngle, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
+            return Easing.Apply(target.SetLocalEulerAngle, normalize ? NormalizeRotation(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask LocalRotateXAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, CancellationToken cancellationToken = default)
         {
-            return Easing.Apply(target.SetLocalEulerAngleX, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
+            return Easing.Apply(target.SetLocalEulerAngleX, normalize ? NormalizeRotation(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask LocalRotateYAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, CancellationToken cancellationToken = default)
         {
-            return Easing.Apply(target.SetLocalEulerAngleY, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
+            return Easing.Apply(target.SetLocalEulerAngleY, normalize ? NormalizeRotation(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask LocalRotateZAsync(this Transform target, float begin, float end, float duration, Easing.Function? easing = null, bool normalize = true, Easing.Timer? timer = null, Easing.Timing timing = Easing.Timing.Update, CancellationToken cancellationToken = default)
         {
-            return Easing.Apply(target.SetLocalEulerAngleZ, normalize ? Normalize(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
+            return Easing.Apply(target.SetLocalEulerAngleZ, normalize ? NormalizeRotation(begin, end) : begin, end, duration, easing, timer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -405,6 +405,22 @@ namespace UniT.Easings
         }
 
         #endregion
+
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static Vector3 NormalizeRotation(Vector3 begin, Vector3 end)
+        {
+            begin.x = NormalizeRotation(begin.x, end.x);
+            begin.y = NormalizeRotation(begin.y, end.y);
+            begin.z = NormalizeRotation(begin.z, end.z);
+            return begin;
+        }
+
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static float NormalizeRotation(float begin, float end)
+        {
+            return begin - 360 * Mathf.Round((begin - end) / 360);
+        }
     }
 }
-#endif

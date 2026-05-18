@@ -1,4 +1,3 @@
-#if UNIT_UNITASK
 #nullable enable
 namespace UniT.Easings
 {
@@ -34,4 +33,3 @@ namespace UniT.Easings
         }
     }
 }
-#endif
