@@ -117,7 +117,7 @@ namespace UniT.Easings
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask Apply(Action<float> action, float begin, float end, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<float>(value => action(begin + (end - begin) * value));
+            var wrapper = new Action<float>(value => action(Mathf.Lerp(begin, end, value)));
             return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
 

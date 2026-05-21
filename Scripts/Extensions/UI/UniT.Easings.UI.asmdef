@@ -1,0 +1,20 @@
+{
+  "name": "UniT.Easings.UI",
+  "rootNamespace": "UniT.Easings",
+  "references": [
+    "UniT.Easings",
+    "UniT.Extensions.UI",
+    "UniTask",
+    "Unity.TextMeshPro"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.unity.ugui",
+      "expression": "",
+      "define": "UNIT_UI"
+    }
+  ],
+  "defineConstraints": [
+    "UNIT_UI"
+  ]
+}

@@ -3,7 +3,6 @@
   "rootNamespace": "UniT.Easings",
   "references": [
     "UniT.Extensions",
-    "UniTask",
-    "Unity.TextMeshPro"
+    "UniTask"
   ]
 }
