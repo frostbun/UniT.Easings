@@ -97,14 +97,7 @@ namespace UniT.Easings
         #if UNITY_EDITOR
         private static UpdaterMono? updater;
 
-        private static UpdaterMono Updater
-        {
-            get
-            {
-                if (!updater) updater = new GameObject(nameof(Easing)).AddComponent<UpdaterMono>().DontDestroyOnLoad();
-                return updater;
-            }
-        }
+        private static UpdaterMono Updater => updater = updater.NullIfDestroyed() ?? new GameObject(nameof(Easing)).AddComponent<UpdaterMono>().DontDestroyOnLoad();
         #else
         private static readonly UpdaterMono Updater = new GameObject(nameof(Easing)).AddComponent<UpdaterMono>().DontDestroyOnLoad();
         #endif
