@@ -110,14 +110,15 @@ namespace UniT.Easings
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask Apply(Action<float> action, float begin, float end, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<float>(value => action(Mathf.Lerp(begin, end, value)));
+            var diff    = end - begin;
+            var wrapper = new Action<float>(value => action(begin + diff * value));
             return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask Apply(Action<int> action, int begin, int end, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {
-            var last = 0;
+            var last = int.MinValue;
             var wrapper = new Action<float>(value =>
             {
                 var curr = (int)value;
@@ -131,14 +132,16 @@ namespace UniT.Easings
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask Apply(Action<Vector3> action, Vector3 begin, Vector3 end, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<float>(value => action(Vector3.Lerp(begin, end, value)));
+            var diff    = end - begin;
+            var wrapper = new Action<float>(value => action(begin + diff * value));
             return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UniTask Apply(Action<Color> action, Color begin, Color end, float duration, Function? easing = null, Timer? timer = null, Timing timing = Timing.Update, CancellationToken cancellationToken = default)
         {
-            var wrapper = new Action<float>(value => action(Color.Lerp(begin, end, value)));
+            var diff    = end - begin;
+            var wrapper = new Action<float>(value => action(begin + diff * value));
             return Apply(wrapper, duration, easing, timer, timing, cancellationToken);
         }
     }
